@@ -1,0 +1,160 @@
+// Publish in Firebase Console → Firestore → Rules.
+// staff_roles: clients cannot write; only Console / Admin SDK. Super Admin can read any doc (for invite checks).
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function staffRoleSnapshot(email) {
+      return get(/databases/$(database)/documents/staff_roles/$(email));
+    }
+
+    function isSuperAdminCaller() {
+      return request.auth != null
+        && request.auth.token.email != null
+        && exists(/databases/$(database)/documents/staff_roles/$(request.auth.token.email))
+        && staffRoleSnapshot(request.auth.token.email).data.role == 'superadmin';
+    }
+
+    function inviteStyleAdminAccountWrite() {
+      return request.auth == null
+        && request.resource.data.viaInvite == true
+        && request.resource.data.password is string
+        && request.resource.data.password.size() >= 6;
+    }
+
+    function hasOnlyKeys(data, allowed) {
+      return data.keys().hasOnly(allowed);
+    }
+
+    function isValidAppointmentData(data) {
+      return data.barberId is string
+      && data.barberName is string
+      && data.customerName is string
+      && data.timestamp is int
+      && data.status is string
+      && data.scheduledArrivalMillis is int
+      && data.homeService is bool
+      && data.homeServicePreferredMillis is int
+      && data.homeServiceAddress is string
+      && data.homeServicePhone is string
+      && data.homeServiceHasCoordinates is bool
+      && data.homeServiceLat is number
+      && data.homeServiceLon is number
+      && data.customerSyncId is string
+      && data.serviceType is string
+      && data.completedAtMillis is int;
+    }
+
+    function isValidCustomerProfileData(data) {
+      return (!('name' in data) || data.name is string)
+      && (!('address' in data) || data.address is string)
+      && (!('age' in data) || data.age is string)
+      && (!('phone' in data) || data.phone is string)
+      && (!('serviceType' in data) || data.serviceType is string)
+      && (!('photoUri' in data) || data.photoUri is string)
+      && (!('lastLat' in data) || data.lastLat is number)
+      && (!('lastLon' in data) || data.lastLon is number)
+      && (!('homeServicePreferredAt' in data) || data.homeServicePreferredAt is int)
+      && (!('hsBookingPinLat' in data) || data.hsBookingPinLat is number)
+      && (!('hsBookingPinLon' in data) || data.hsBookingPinLon is number)
+      && (!('updatedAt' in data) || data.updatedAt is int);
+    }
+
+    match /staff_roles/{emailKey} {
+      // Single-document get must work without auth: after a failed email/password attempt the client is
+      // not signed in, but we need to know if this address is Super Admin (correct toast vs barber flow).
+      // Collection listing stays closed.
+      allow get: if true;
+      allow list: if false;
+      allow write: if false;
+    }
+
+    match /appointments/{docId} {
+      allow read: if true;
+      allow create: if hasOnlyKeys(
+                        request.resource.data,
+                        [
+                          'barberId', 'barberName', 'customerName', 'timestamp', 'status',
+                          'scheduledArrivalMillis', 'homeService', 'homeServicePreferredMillis',
+                          'homeServiceAddress', 'homeServicePhone', 'homeServiceHasCoordinates',
+                          'homeServiceLat', 'homeServiceLon', 'customerSyncId', 'serviceType',
+                          'completedAtMillis'
+                        ]
+                      )
+                      && isValidAppointmentData(request.resource.data);
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(
+                        [
+                          'barberId', 'barberName', 'customerName', 'timestamp', 'status',
+                          'scheduledArrivalMillis', 'homeService', 'homeServicePreferredMillis',
+                          'homeServiceAddress', 'homeServicePhone', 'homeServiceHasCoordinates',
+                          'homeServiceLat', 'homeServiceLon', 'customerSyncId', 'serviceType',
+                          'completedAtMillis'
+                        ]
+                      )
+                      && isValidAppointmentData(request.resource.data);
+      allow delete: if true;
+    }
+    match /barbers/{barberId} {
+      allow read, write: if true;
+    }
+    match /reports/{reportId} {
+      allow read, write: if true;
+    }
+    match /admin_accounts/{email} {
+      allow get: if true;
+      allow list: if isSuperAdminCaller();
+      // Super Admin may fully manage staff. Invitee registration still allowed for legacy invite flow.
+      allow create, update: if isSuperAdminCaller() || inviteStyleAdminAccountWrite();
+      allow delete: if isSuperAdminCaller();
+    }
+
+    // Invite token is secret; read allows any client to load one doc (needed before barber has an account).
+    match /admin_invites/{token} {
+      allow read: if true;
+      allow create: if isSuperAdminCaller();
+      allow update: if false;
+      allow delete: if true;
+    }
+
+    // Guest customer profile sync (UUID doc id). Tighten in production (e.g. signed tokens).
+    match /customer_profiles/{syncId} {
+      allow read: if true;
+      allow create: if hasOnlyKeys(
+                        request.resource.data,
+                        [
+                          'name', 'address', 'age', 'phone', 'serviceType', 'photoUri',
+                          'lastLat', 'lastLon', 'homeServicePreferredAt',
+                          'hsBookingPinLat', 'hsBookingPinLon', 'updatedAt'
+                        ]
+                      )
+                      && isValidCustomerProfileData(request.resource.data);
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(
+                        [
+                          'name', 'address', 'age', 'phone', 'serviceType', 'photoUri',
+                          'lastLat', 'lastLon', 'homeServicePreferredAt',
+                          'hsBookingPinLat', 'hsBookingPinLon', 'updatedAt'
+                        ]
+                      )
+                      && isValidCustomerProfileData(request.resource.data);
+      allow delete: if true;
+    }
+
+    // FCM device tokens (doc id must equal field token). App only writes; no client reads.
+    match /fcm_tokens/{docId} {
+      allow create, update: if docId == request.resource.data.token;
+      allow get, list, delete: if false;
+    }
+
+    // Server-side trail written by Cloud Functions.
+    match /audit_logs/{docId} {
+      allow read: if isSuperAdminCaller();
+      allow write: if false;
+    }
+
+    // Public mobile runtime flags (e.g., app update prompt config).
+    match /app_config/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}
