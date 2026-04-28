@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Splash Screen - Premium Barbershop Palette -->
+    <color name="splash_background">#0D1321</color>
+    <color name="splash_gradient_start">#0D1321</color>
+    <color name="splash_gradient_mid">#1B2838</color>
+    <color name="splash_gradient_end">#16213E</color>
+    <color name="splash_text">#FAFAFA</color>
+    <color name="splash_subtext">#9CA3AF</color>
+    <color name="splash_accent">#D4AF37</color>
+    <color name="splash_accent_light">#F0D875</color>
+    <color name="book_now_gold_bright">#FFF4D03F</color>
+    <color name="book_now_gold_deep">#FFC5A028</color>
+    <color name="book_now_label">#FF1A1408</color>
+
+    <!-- Home screen -->
+    <color name="primary">#5D4037</color>
+
+    <!-- Welcome screen (Booksy-style) -->
+    <color name="welcome_teal">#00897B</color>
+    <color name="welcome_teal_light">#B3E5FC</color>
+
+    <!-- Auth buttons -->
+    <color name="google_red">#DB4437</color>
+    <color name="facebook_blue">#1877F2</color>
+    <color name="auth_tab_selected">#9C27B0</color>
+
+    <!-- Status colors -->
+    <color name="status_active">#4CAF50</color>
+    <color name="status_inactive">#333333</color>
+    <color name="report_red">#F44336</color>
+
+    <!-- Card / UI -->
+    <color name="card_background">#1B2838</color>
+    <color name="divider">#2A3A4A</color>
+
+    <!-- Role hierarchy (visual cues) -->
+    <color name="role_user_yellow">#F5C542</color>
+    <color name="role_user_yellow_dark">#C9A227</color>
+    <color name="role_admin_blue">#42A5F5</color>
+    <color name="role_admin_blue_dark">#1E5A8E</color>
+    <color name="role_super_gold">#FFD54F</color>
+    <color name="role_super_gold_dim">#B8860B</color>
+
+    <!-- Super Admin dashboard surfaces -->
+    <color name="super_card_bg">#141C2A</color>
+    <color name="super_card_bg_deep">#101820</color>
+    <color name="super_card_stroke">#2A3F55</color>
+    <color name="super_tab_container_bg">#121A28</color>
+    <color name="super_duty_on_fill">#15251C</color>
+    <color name="super_duty_off_fill">#1E2836</color>
+
+    <!-- Super Admin — glassmorphism (frosted panels on gradient) -->
+    <color name="super_glass_root_start">#070E16</color>
+    <color name="super_glass_root_mid">#0C1824</color>
+    <color name="super_glass_root_end">#081A14</color>
+    <color name="super_glass_fill">#C0101828</color>
+    <color name="super_glass_fill_soft">#A8182234</color>
+    <color name="super_glass_fill_deep">#B30E141E</color>
+    <color name="super_glass_border">#55D4AF37</color>
+    <color name="super_glass_border_soft">#28FFFFFF</color>
+    <color name="super_glass_nav_fill">#D80A121C</color>
+    <color name="super_section_gold">#FFE8C96A</color>
+    <color name="super_neon_green">#4ADE80</color>
+    <color name="super_glass_tab_active_fill">#354ADE80</color>
+    <color name="super_glass_tab_active_stroke">#994ADE80</color>
+    <color name="super_glass_tab_idle_fill">#18FFFFFF</color>
+    <color name="super_glass_tab_idle_stroke">#28FFFFFF</color>
+    <color name="super_glass_header_fill">#AA121A28</color>
+    <color name="super_glass_report_stroke">#55CC4444</color>
+
+    <!-- Customer / user flows (cards on gradient) -->
+    <color name="user_card_bg">#141C2A</color>
+    <color name="user_card_stroke">#2A3F55</color>
+    <color name="user_card_bg_soft">#182232</color>
+
+    <!-- Admin: Home service detail dialog -->
+    <color name="admin_hs_sheet_bg">#121A28</color>
+    <color name="admin_hs_section_fill">#1A2636</color>
+    <color name="admin_hs_section_stroke">#2E4158</color>
+    <color name="admin_hs_visit_fill">#0D2A28</color>
+    <color name="admin_hs_map_inset">#0E1624</color>
+    <color name="admin_hs_warning_fill">#2A1A18</color>
+    <color name="admin_hs_warning_stroke">#5C3D38</color>
+
+    <!-- Discover services: gender choice row (distinct from body copy below) -->
+    <color name="discover_option_surface">#1A2434</color>
+    <color name="discover_option_well_teal">#2E00897B</color>
+    <color name="discover_option_well_gold">#45D4AF37</color>
+    <color name="discover_gender_section_bg">#0E1622</color>
+    <color name="discover_gender_section_stroke">#2E4158</color>
+    <color name="discover_section_fade_line_start">#00897B</color>
+    <color name="discover_section_fade_line_end">#D4AF37</color>
+    <color name="cutify_brand_wordmark">#FF4FB3</color>
+
+    <!-- Super Admin — Peak Hours dashboard -->
+    <color name="peak_dashboard_bg">#0E141D</color>
+    <color name="peak_dashboard_card">#161B22</color>
+    <color name="peak_dashboard_title_orange">#F97316</color>
+    <color name="peak_dashboard_accent_yellow">#FBBF24</color>
+</resources>

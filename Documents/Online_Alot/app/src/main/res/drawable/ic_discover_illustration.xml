@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="160dp"
+    android:viewportWidth="240"
+    android:viewportHeight="160">
+
+    <!-- Figure 1 - welcome_teal -->
+    <path android:fillColor="#00897B" android:pathData="M35,120 a18,18 0 1 1 0,-36 a18,18 0 1 1 0,36"/>
+    <path android:fillColor="#00897B" android:pathData="M25,120 L55,120 L52,155 L28,155 Z"/>
+
+    <!-- Figure 2 - splash_accent (gold) -->
+    <path android:fillColor="#D4AF37" android:pathData="M75,115 a16,16 0 1 1 0,-32 a16,16 0 1 1 0,32"/>
+    <path android:fillColor="#D4AF37" android:pathData="M66,118 L88,118 L85,155 L69,155 Z"/>
+
+    <!-- Figure 3 - splash_subtext (center, taller) -->
+    <path android:fillColor="#9CA3AF" android:pathData="M110,105 a20,20 0 1 1 0,-40 a20,20 0 1 1 0,40"/>
+    <path android:fillColor="#9CA3AF" android:pathData="M98,110 L132,110 L128,155 L102,155 Z"/>
+
+    <!-- Figure 4 - splash_accent -->
+    <path android:fillColor="#D4AF37" android:pathData="M155,115 a16,16 0 1 1 0,-32 a16,16 0 1 1 0,32"/>
+    <path android:fillColor="#D4AF37" android:pathData="M146,118 L168,118 L165,155 L149,155 Z"/>
+
+    <!-- Figure 5 - welcome_teal -->
+    <path android:fillColor="#00897B" android:pathData="M195,120 a18,18 0 1 1 0,-36 a18,18 0 1 1 0,36"/>
+    <path android:fillColor="#00897B" android:pathData="M185,120 L215,120 L212,155 L188,155 Z"/>
+
+    <!-- Small dog - welcome_teal_light -->
+    <path android:fillColor="#B3E5FC" android:pathData="M120,140 m-8,0 a8,6 0 1 1 16,0 a8,6 0 1 1 -16,0"/>
+</vector>

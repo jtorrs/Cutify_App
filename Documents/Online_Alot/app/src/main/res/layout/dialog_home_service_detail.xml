@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:paddingHorizontal="8dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="8dp"
+    android:scrollbars="none">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/admin_hs_sheet_bg"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:strokeColor="@color/welcome_teal"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="12dp">
+
+            <!-- Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_hs_detail_header"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="8dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:contentDescription="@null"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_hs_detail_home" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.12"
+                        android:text="@string/admin_hs_detail_badge"
+                        android:textAllCaps="true"
+                        android:textColor="@color/welcome_teal_light"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        tools:ignore="SmallSp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/admin_home_detail_title"
+                        android:textColor="@color/splash_text"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_hs_gradient_accent_line" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btn_hs_detail_close"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="top"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/admin_hs_close"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_close_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"
+                android:paddingTop="10dp">
+
+                <!-- Customer -->
+                <TextView
+                    style="@style/AdminHsDetailLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_hs_label_customer" />
+
+                <TextView
+                    android:id="@+id/tv_hs_detail_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:letterSpacing="0.02"
+                    android:lineSpacingExtra="1dp"
+                    android:textColor="@color/splash_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Maria Santos" />
+
+                <LinearLayout
+                    android:id="@+id/layout_hs_service_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_hs_detail_section"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/AdminHsDetailLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/admin_hs_label_requested_service" />
+
+                    <TextView
+                        android:id="@+id/tv_hs_detail_service"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/splash_accent_light"
+                        android:textSize="13sp"
+                        tools:text="Fade haircut" />
+                </LinearLayout>
+
+                <!-- Phone block -->
+                <LinearLayout
+                    android:id="@+id/layout_hs_phone_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_hs_detail_section"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/AdminHsDetailLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/admin_hs_label_phone" />
+
+                    <TextView
+                        android:id="@+id/tv_hs_detail_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/splash_accent_light"
+                        android:textSize="13sp"
+                        tools:text="+63 917 000 0000" />
+                </LinearLayout>
+
+                <!-- Booked + visit row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_hs_detail_section"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            style="@style/AdminHsDetailLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/admin_hs_label_booked" />
+
+                        <TextView
+                            android:id="@+id/tv_hs_detail_booked"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/splash_subtext"
+                            android:textSize="12sp"
+                            tools:text="Apr 3, 2026 · 2:30 PM" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_hs_detail_visit"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            style="@style/AdminHsDetailLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/admin_hs_label_visit"
+                            android:textColor="@color/welcome_teal_light" />
+
+                        <TextView
+                            android:id="@+id/tv_hs_detail_visit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:lineSpacingExtra="1dp"
+                            android:textColor="@color/welcome_teal_light"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            tools:text="Apr 5, 2026 · 10:00 AM" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Address -->
+                <TextView
+                    style="@style/AdminHsDetailLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/admin_hs_label_address" />
+
+                <TextView
+                    android:id="@+id/tv_hs_detail_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_hs_detail_section"
+                    android:drawableStart="@drawable/ic_hs_address_stripe"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:lineSpacingExtra="2dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="10dp"
+                    android:textColor="@color/splash_text"
+                    android:textSize="13sp"
+                    tools:text="123 Main St, Cebu City" />
+
+                <!-- Map section -->
+                <TextView
+                    style="@style/AdminHsDetailLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/admin_home_detail_map_hint" />
+
+                <TextView
+                    android:id="@+id/tv_hs_no_map_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_hs_detail_warning"
+                    android:lineSpacingExtra="2dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/admin_home_detail_no_map"
+                    android:textColor="@color/splash_accent_light"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <FrameLayout
+                    android:id="@+id/frame_hs_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_hs_detail_map_frame"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:padding="2dp">
+
+                    <WebView
+                        android:id="@+id/wv_hs_detail_map"
+                        android:layout_width="match_parent"
+                        android:layout_height="132dp"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:letterSpacing="0.03"
+                    android:text="@string/admin_home_detail_tap_map"
+                    android:textColor="@color/splash_subtext"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_open_in_maps"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:letterSpacing="0.04"
+                    android:minHeight="0dp"
+                    android:paddingVertical="0dp"
+                    android:text="@string/admin_home_detail_open_maps"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/welcome_teal"
+                    app:cornerRadius="10dp"
+                    app:elevation="2dp"
+                    app:rippleColor="@color/welcome_teal_light" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</ScrollView>

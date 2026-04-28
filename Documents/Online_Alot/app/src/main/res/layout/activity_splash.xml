@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash_barber_pole">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="26dp"
+        android:paddingBottom="18dp">
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.9" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="22dp">
+
+            <ImageView
+                android:id="@+id/splash_logo"
+                android:layout_width="248dp"
+                android:layout_height="248dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:contentDescription="@string/logo_description"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_barbershop_logo" />
+
+            <TextView
+                android:id="@+id/splash_app_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:fontFamily="cursive"
+                android:letterSpacing="0.01"
+                android:text="@string/app_display_name"
+                android:textColor="@color/splash_accent"
+                android:textSize="48sp"
+                android:textStyle="bold|italic"
+                android:shadowColor="#66000000"
+                android:shadowDx="0"
+                android:shadowDy="2"
+                android:shadowRadius="6" />
+
+            <View
+                android:layout_width="96dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_hs_gradient_accent_line" />
+
+            <TextView
+                android:id="@+id/splash_tagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:text="@string/splash_tagline"
+                android:textColor="@color/splash_subtext"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/bg_splash_progress_track">
+
+            <View
+                android:id="@+id/splash_loading_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_hs_gradient_accent_line" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

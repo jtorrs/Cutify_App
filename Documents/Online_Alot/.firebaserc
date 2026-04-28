@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "barbershop-481c0",
+    "Cutify": "barbershop-481c0",
+    "cutify": "barbershop-481c0"
+  },
+  "targets": {},
+  "etags": {}
+}

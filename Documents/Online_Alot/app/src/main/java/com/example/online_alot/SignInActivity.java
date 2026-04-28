@@ -20,7 +20,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
@@ -56,77 +55,6 @@ public class SignInActivity extends AppCompatActivity {
 
         btnGetStarted.setOnClickListener(v -> handleGetStarted());
 
-        View btnForgot = findViewById(R.id.tv_forgot_password);
-        btnForgot.setOnClickListener(v -> {
-            CharSequence cs = etEmail.getText();
-            String raw = cs != null ? cs.toString() : "";
-            showForgotPasswordHelp(SuperAdminFirebase.roleDocumentId(raw));
-        });
-    }
-
-    /**
-     * Super Admin: Firebase sends a reset email. Barber admins (invite/Firestore) must ask Super Admin to reset
-     * in the dashboard, or use the same email reset only if they also have a Firebase Auth user.
-     */
-    private void showForgotPasswordHelp(String email) {
-        View root = LayoutInflater.from(this).inflate(R.layout.dialog_forgot_password, null, false);
-        AlertDialog dlg = new MaterialAlertDialogBuilder(this)
-                .setView(root)
-                .create();
-        View.OnClickListener dismiss = v -> dlg.dismiss();
-        root.findViewById(R.id.btn_forgot_close).setOnClickListener(dismiss);
-        root.findViewById(R.id.btn_forgot_not_now).setOnClickListener(dismiss);
-        root.findViewById(R.id.btn_forgot_send_email).setOnClickListener(v -> {
-            dlg.dismiss();
-            sendFirebasePasswordReset(email);
-        });
-        dlg.show();
-        if (dlg.getWindow() != null) {
-            dlg.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-    }
-
-    /**
-     * Sends Firebase password reset. Email is only delivered if this address exists in Firebase
-     * Authentication with Email/Password — invited barbers stored only in Firestore will not get mail.
-     */
-    private void sendFirebasePasswordReset(String email) {
-        if (email == null || email.isEmpty()) {
-            Toast.makeText(this, R.string.password_reset_need_email, Toast.LENGTH_LONG).show();
-            return;
-        }
-        final String trimmed = email.trim().toLowerCase(Locale.ROOT);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.setLanguageCode(Locale.getDefault().getLanguage());
-
-        auth.sendPasswordResetEmail(trimmed)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(SignInActivity.this, R.string.password_reset_email_sent_confirm_inbox,
-                                Toast.LENGTH_SHORT).show();
-                        new MaterialAlertDialogBuilder(SignInActivity.this)
-                                .setTitle(R.string.forgot_password_title)
-                                .setMessage(R.string.password_reset_email_followup_detail)
-                                .setPositiveButton(android.R.string.ok, null)
-                                .show();
-                        return;
-                    }
-                    Exception ex = task.getException();
-                    if (ex instanceof FirebaseAuthException) {
-                        String code = ((FirebaseAuthException) ex).getErrorCode();
-                        if ("ERROR_INVALID_EMAIL".equals(code)) {
-                            Toast.makeText(SignInActivity.this, R.string.password_reset_invalid_email,
-                                    Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        if ("ERROR_USER_NOT_FOUND".equals(code)) {
-                            Toast.makeText(SignInActivity.this, R.string.password_reset_no_firebase_user,
-                                    Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                    }
-                    Toast.makeText(SignInActivity.this, R.string.password_reset_email_failed, Toast.LENGTH_LONG).show();
-                });
     }
 
     private void handleSignIn(String emailRaw, String password) {

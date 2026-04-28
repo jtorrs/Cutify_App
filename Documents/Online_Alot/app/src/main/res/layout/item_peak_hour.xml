@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="10dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="22dp"
+        android:background="@color/welcome_teal" />
+
+    <TextView
+        android:id="@+id/tv_hour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:textColor="@color/splash_text"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/welcome_teal"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+</LinearLayout>

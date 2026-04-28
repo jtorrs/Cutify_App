@@ -497,13 +497,15 @@
     <string name="admin_queue_empty_hint">When customers join your queue, they will appear here. The list refreshes automatically.</string>
     <string name="admin_profile_subtitle">How clients see you in the app</string>
     <string name="admin_availability_title">Set your available hours</string>
-    <string name="admin_availability_message">Enter your current working hours so users can see when you are available.</string>
-    <string name="admin_availability_hint">Example: 10:00 AM - 8:00 PM</string>
+    <string name="admin_availability_message">Tap the time field to pick your working hours, then choose the days you accept bookings.</string>
+    <string name="admin_availability_hint">Tap to pick start and end time</string>
     <string name="admin_availability_days_hint">Days: Mon, Tue, Wed, Thu, Fri</string>
     <string name="admin_availability_pick_start">Pick start time</string>
     <string name="admin_availability_pick_end">Pick end time</string>
     <string name="admin_availability_invalid_hours">Use this format for hours: 9:00 AM - 6:00 PM</string>
     <string name="admin_availability_invalid_days">Please select at least one available day.</string>
+    <string name="admin_availability_summary_empty">No schedule selected yet.</string>
+    <string name="admin_availability_summary_format">Available on %1$s, %2$s</string>
     <string name="admin_availability_save">Save</string>
     <string name="admin_availability_skip">Skip for now</string>
     <string name="day_mon">Mon</string>

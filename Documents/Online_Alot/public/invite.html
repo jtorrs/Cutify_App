@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cutify — Admin invite</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 1.5rem; text-align: center; color: #111; }
+    a { color: #0d47a1; font-weight: 600; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <p>Opening the Cutify app…</p>
+  <p style="margin-top:1.5rem;"><a id="openApp" href="#">Click the link to open the app and set your password</a></p>
+  <script>
+    (function () {
+      var q = new URLSearchParams(window.location.search);
+      var token = q.get('token');
+      if (!token) {
+        document.body.innerHTML = '<p>Invalid or missing invitation.</p>';
+        return;
+      }
+      var deep = 'cutify://invite/accept?token=' + encodeURIComponent(token);
+      var a = document.getElementById('openApp');
+      a.href = deep;
+      window.location.replace(deep);
+    })();
+  </script>
+</body>
+</html>
