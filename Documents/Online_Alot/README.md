@@ -1,4 +1,4 @@
-# Online_Alot (Cutify)
+# Cutify
 
 ## App Usage Guide
 
